@@ -1,11 +1,17 @@
-const mainDiv = document.querySelector("#main-div");
-// document.createElement("div");
-// const input = prompt("How many pixel would you like?");
+document.addEventListener("DOMContentLoaded", function () {
+  createBoard(32);
+});
 
-function userInput(input) {
-  for (let i = 0; i < input; i++) {
-    const pixel = document.createElement("div");
-    pixel.classList.add("square");
-    mainDiv.append(pixel);
+function createBoard(size) {
+  let board = document.querySelector("#board");
+  board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+  board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+
+  let pixels = size * size;
+
+  for (let i = 0; i < pixels; i++) {
+    let divs = document.createElement("div");
+    divs.classList.add("pixel");
+    board.insertAdjacentElement("beforeend", divs);
   }
 }
