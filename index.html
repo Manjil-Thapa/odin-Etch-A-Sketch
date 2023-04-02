@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Zeyada&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
     <title>Etch-A-Sketch</title>
   </head>
@@ -12,13 +18,20 @@
 
     <div class="options">
       <button id="grid-size">Grid Size</button>
-      <button id="pick-color" onclick="setColor('black')">Color Picker</button>
-      <button id="rainbow" onclick="setColor('random')">Rainbow</button>
+      <button id="black" onclick="setColor('black')">Black</button>
+      <input
+        id="get-color"
+        type="color"
+        name="getColor"
+        onclick="setColor('getColor')"
+      />
+      <button id="rainbow" onclick="setColor('random')">Random</button>
       <button id="eraser">Eraser</button>
       <button id="toggle-grid">Grid lines</button>
-      <button id="reset">Reset</button>
+      <button id="reset" onclick="clearBoard()">Reset</button>
     </div>
     <p id="prompt-msg"></p>
+    <p id="sketch">Click anywhere to turn the pen on</p>
     <div id="board"></div>
 
     <script src="app.js"></script>

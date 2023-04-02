@@ -1,14 +1,29 @@
-// Global default color
+// Global selectors
 let color = "black";
+let handleColor = false;
 
 document.addEventListener("DOMContentLoaded", function () {
   createBoard(16);
 
+  document.querySelector("body").addEventListener("click", function (e) {
+    if (e.target.tagName != "BUTTON") {
+      handleColor = !handleColor;
+      let sketch = document.querySelector("#sketch");
+      if (handleColor) {
+        sketch.textContent = "Pen on";
+      } else {
+        sketch.textContent = "Pen off";
+      }
+    }
+  });
+
   // Variable for a button
   let gridSizeBtn = document.querySelector("#grid-size");
   gridSizeBtn.addEventListener("click", function () {
+    reset();
     let size = gridSize();
     createBoard(size);
+    clearBoard();
   });
 });
 
@@ -22,6 +37,7 @@ function createBoard(size) {
   for (let i = 0; i < pixels; i++) {
     let divs = document.createElement("div");
     divs.classList.add("pixel");
+    divs.style.backgroundColor = "white";
     // Draw
     divs.addEventListener("mouseover", pixelColor);
     board.insertAdjacentElement("beforeend", divs);
@@ -46,13 +62,50 @@ const gridSize = () => {
 
 // Pixel colors
 function pixelColor() {
-  if (color == "random") {
-    this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-  } else {
-    this.style.backgroundColor = "black";
+  if (handleColor) {
+    if (color == "random") {
+      this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+      // } else if (color == "getColor") {
+      //   let newColor = document.querySelector("#get-color");
+      //   newColor.addEventListener("click", function (e) {
+      //     return e.target.value;
+      //   });
+    } else {
+      this.style.backgroundColor = "black";
+    }
   }
 }
 
 function setColor(colorChoice) {
   color = colorChoice;
 }
+
+// Clear board
+function clearBoard() {
+  let pixels = document.querySelectorAll(".pixel");
+  pixels.forEach((pixel) => {
+    pixel.style.backgroundColor = "white";
+  });
+}
+
+// Reset pixels and board
+function reset() {
+  let pixels = document.querySelectorAll(".pixel");
+  pixels.forEach((pixel) => {
+    pixel.remove();
+  });
+}
+
+// Toggle grid lines
+const toggleGrid = document.querySelector("#toggle-grid");
+toggleGrid.addEventListener("click", function () {
+  let pixels = document.querySelectorAll(".pixel");
+  pixels.forEach((pixel) => {
+    pixel.classList.toggle("toggle-grid");
+  });
+});
+
+let newColor = document.querySelector("#get-color");
+newColor.addEventListener("click", function (e) {
+  console.log(e.target.value);
+});
