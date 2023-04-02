@@ -11,13 +11,14 @@
     <h1>Etch-A-Sketch</h1>
 
     <div class="options">
-      <button>Grid Size</button>
-      <button>Reset</button>
-      <button>Rainbow</button>
-      <button>Color Picker</button>
-      <button>Eraser</button>
-      <button>Grid lines</button>
+      <button id="grid-size">Grid Size</button>
+      <button id="pick-color" onclick="setColor('black')">Color Picker</button>
+      <button id="rainbow" onclick="setColor('random')">Rainbow</button>
+      <button id="eraser">Eraser</button>
+      <button id="toggle-grid">Grid lines</button>
+      <button id="reset">Reset</button>
     </div>
+    <p id="prompt-msg"></p>
     <div id="board"></div>
 
     <script src="app.js"></script>
