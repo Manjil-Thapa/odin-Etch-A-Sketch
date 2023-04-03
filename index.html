@@ -15,25 +15,17 @@
   </head>
   <body>
     <h1>Etch-A-Sketch</h1>
-
     <div class="options">
       <button id="grid-size">Grid Size</button>
       <button id="black" onclick="setColor('black')">Black</button>
-      <input
-        id="get-color"
-        type="color"
-        name="getColor"
-        onclick="setColor('getColor')"
-      />
-      <button id="rainbow" onclick="setColor('random')">Random</button>
-      <button id="eraser">Eraser</button>
+      <button id="random" onclick="setColor('random')">Random</button>
+      <button id="eraser" onclick="setColor('white')">Eraser</button>
       <button id="toggle-grid">Grid lines</button>
       <button id="reset" onclick="clearBoard()">Reset</button>
     </div>
     <p id="prompt-msg"></p>
-    <p id="sketch">Click anywhere to turn the pen on</p>
     <div id="board"></div>
-
+    <p id="sketch">Click anywhere to start</p>
     <script src="app.js"></script>
   </body>
 </html>

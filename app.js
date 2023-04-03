@@ -3,16 +3,16 @@ let color = "black";
 let handleColor = false;
 
 document.addEventListener("DOMContentLoaded", function () {
-  createBoard(16);
+  createGrid(16);
 
   document.querySelector("body").addEventListener("click", function (e) {
     if (e.target.tagName != "BUTTON") {
       handleColor = !handleColor;
       let sketch = document.querySelector("#sketch");
       if (handleColor) {
-        sketch.textContent = "Pen on";
+        sketch.textContent = "Mode: Drawing";
       } else {
-        sketch.textContent = "Pen off";
+        sketch.textContent = "Mode: Not drawing";
       }
     }
   });
@@ -22,12 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
   gridSizeBtn.addEventListener("click", function () {
     reset();
     let size = gridSize();
-    createBoard(size);
+    createGrid(size);
     clearBoard();
   });
 });
 
-function createBoard(size) {
+function createGrid(size) {
   let board = document.querySelector("#board");
   board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
   board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
@@ -60,18 +60,15 @@ const gridSize = () => {
   }
 };
 
-// Pixel colors
+// Pen color
 function pixelColor() {
   if (handleColor) {
     if (color == "random") {
       this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-      // } else if (color == "getColor") {
-      //   let newColor = document.querySelector("#get-color");
-      //   newColor.addEventListener("click", function (e) {
-      //     return e.target.value;
-      //   });
-    } else {
+    } else if (color == "black") {
       this.style.backgroundColor = "black";
+    } else {
+      this.style.backgroundColor = "white";
     }
   }
 }
@@ -103,9 +100,4 @@ toggleGrid.addEventListener("click", function () {
   pixels.forEach((pixel) => {
     pixel.classList.toggle("toggle-grid");
   });
-});
-
-let newColor = document.querySelector("#get-color");
-newColor.addEventListener("click", function (e) {
-  console.log(e.target.value);
 });
